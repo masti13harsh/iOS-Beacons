@@ -25,15 +25,24 @@
     self.beaconMinor.text = [selectedBeacon objectForKey:@"beaconMinorValue"];
     self.beaconURL.text = [selectedBeacon objectForKey:@"beaconURL"];
     
+//    self.beaconName.text = @"b1";
+//    self.beaconUUID.text = @"8AEFB031-6C32-486F-825B-E26FA193487D";
+//    self.beaconMajor.text = @"1";
+//    self.beaconMinor.text = @"2";
+//    self.beaconURL.text = @"http://www.google.com";
+    
     NSUUID *beaconUUID = [[NSUUID alloc] initWithUUIDString:self.beaconUUID.text];
     
-    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:beaconUUID
+    self.region = [[CLBeaconRegion alloc] initWithProximityUUID:beaconUUID
                                                                 identifier:self.beaconName.text];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    [self.locationManager startRangingBeaconsInRegion:region];
-    [self.locationManager startMonitoringForRegion:region];
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager startRangingBeaconsInRegion:self.region];
+    [self.locationManager startMonitoringForRegion:self.region];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,8 +61,10 @@
 */
 
 #pragma mark - Location Manager Delegate
+
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
     if(beacons.count > 0) {
+        NSLog(@"%@", beacons);
         CLBeacon *beacon = beacons[0];
         self.beaconProximity.text = [self nameForProximity:beacon.proximity];
     }

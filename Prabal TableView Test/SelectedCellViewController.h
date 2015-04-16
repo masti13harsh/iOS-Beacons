@@ -17,10 +17,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *beaconUUID;
 @property (strong, nonatomic) IBOutlet UILabel *beaconMajor;
 @property (strong, nonatomic) IBOutlet UILabel *beaconMinor;
-@property (strong, nonatomic) IBOutlet UILabel *beaconURL;
+@property (weak, nonatomic) IBOutlet UITextView *beaconURL;
 
 //Properties
 @property (nonatomic) int selectedCellIndex;
 @property (strong, nonatomic) NSMutableDictionary *selectedBeacon;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLBeaconRegion *region;
 @end

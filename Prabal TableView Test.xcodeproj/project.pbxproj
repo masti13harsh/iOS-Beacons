@@ -16,6 +16,7 @@
 		3A0FC8CC1AD2FCD0000BF3C2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FC8CB1AD2FCD0000BF3C2 /* TableViewController.m */; };
 		3A0FC8CF1AD2FE62000BF3C2 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FC8CE1AD2FE62000BF3C2 /* AddItemViewController.m */; };
 		3A64404D1AD4418A006BBF20 /* SelectedCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64404C1AD4418A006BBF20 /* SelectedCellViewController.m */; };
+		F75B64E01ADDA2B600CA9F2E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75B64DF1ADDA2B600CA9F2E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		3A0FC8CE1AD2FE62000BF3C2 /* AddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemViewController.m; sourceTree = SOURCE_ROOT; };
 		3A64404B1AD4418A006BBF20 /* SelectedCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedCellViewController.h; sourceTree = "<group>"; };
 		3A64404C1AD4418A006BBF20 /* SelectedCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedCellViewController.m; sourceTree = "<group>"; };
+		F75B64DF1ADDA2B600CA9F2E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F75B64E01ADDA2B600CA9F2E /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +72,7 @@
 		3A0FC8981AD2FC4E000BF3C2 = {
 			isa = PBXGroup;
 			children = (
+				F75B64DF1ADDA2B600CA9F2E /* CoreLocation.framework */,
 				3A0FC8A31AD2FC4E000BF3C2 /* Prabal TableView Test */,
 				3A0FC8BD1AD2FC4E000BF3C2 /* Prabal TableView TestTests */,
 				3A0FC8A21AD2FC4E000BF3C2 /* Products */,
@@ -356,6 +360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Prabal TableView Test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -366,6 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Prabal TableView Test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

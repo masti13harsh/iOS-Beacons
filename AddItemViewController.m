@@ -48,9 +48,33 @@
     [beaconDetails setValue:[NSString stringWithFormat:@"%@", self.beaconMajorValue.text] forKey:@"beaconMajorValue"];
     [beaconDetails setValue:[NSString stringWithFormat:@"%@", self.beaconMinorValue.text] forKey:@"beaconMinorValue"];
     [beaconDetails setValue:[NSString stringWithFormat:@"%@", self.beaconURL.text] forKey:@"beaconURL"];
+    [beaconDetails setObject:self.beaconImage forKey:@"beaconImage"];
         
     [[NSUserDefaults standardUserDefaults] setObject:beaconDetails forKey:@"newCell"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"isCellAdded"];    
+}
+
+- (IBAction)takePhotoButtonClicked:(UIButton *)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (IBAction)selectPhotoButtonClicked:(UIButton *)sender {
+}
+
+#pragma mark - Photo Picker Delegates
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    self.beaconImage = info[UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

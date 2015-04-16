@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddItemViewController : UIViewController
+@interface AddItemViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 //Outlets
 @property (strong, nonatomic) IBOutlet UITextField *beaconName;
@@ -19,5 +19,10 @@
 
 //Actions
 - (IBAction)saveButtonClicked:(UIButton *)sender;
+- (IBAction)takePhotoButtonClicked:(UIButton *)sender;
+- (IBAction)selectPhotoButtonClicked:(UIButton *)sender;
+
+//Properties
+@property (strong, nonatomic) UIImage *beaconImage;
 
 @end
