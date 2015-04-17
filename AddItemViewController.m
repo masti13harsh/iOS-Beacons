@@ -7,6 +7,7 @@
 //
 
 #import "AddItemViewController.h"
+#import "Beacon.h"
 
 @interface AddItemViewController ()
 
@@ -40,18 +41,19 @@
     [textField resignFirstResponder];
 }
 
-- (IBAction)saveButtonClicked:(UIButton *)sender {  	
-    
-    NSMutableDictionary *beaconDetails = [[NSMutableDictionary alloc] init];
-    [beaconDetails setValue:[NSString stringWithFormat:@"%@", self.beaconName.text] forKey:@"beaconName"];
-    [beaconDetails setValue:[NSString stringWithFormat:@"%@", self.beaconUUID.text] forKey:@"beaconUUID"];
-    [beaconDetails setValue:[NSString stringWithFormat:@"%@", self.beaconMajorValue.text] forKey:@"beaconMajorValue"];
-    [beaconDetails setValue:[NSString stringWithFormat:@"%@", self.beaconMinorValue.text] forKey:@"beaconMinorValue"];
-    [beaconDetails setValue:[NSString stringWithFormat:@"%@", self.beaconURL.text] forKey:@"beaconURL"];
-    [beaconDetails setObject:self.beaconImage forKey:@"beaconImage"];
+- (IBAction)saveButtonClicked:(UIButton *)sender {
+    if([self checkAllFieldsAreFilled]) {
+        Beacon *beacon = [[Beacon alloc] init];
         
-    [[NSUserDefaults standardUserDefaults] setObject:beaconDetails forKey:@"newCell"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"isCellAdded"];    
+        NSDictionary *beaconDictionary = [beacon insertBeaconInDictionaryAndReturn:self.beaconName.text
+                                                                          withUUID:self.beaconUUID.text
+                                                                         withMajor:self.beaconMajorValue.text
+                                                                         withMonor:self.beaconMinorValue.text
+                                                                           withURL:self.beaconURL.text
+                                                                          andImage:self.beaconImage];
+        
+        [self.beacons addObject:beaconDictionary];
+    }
 }
 
 - (IBAction)takePhotoButtonClicked:(UIButton *)sender {
@@ -64,6 +66,12 @@
 }
 
 - (IBAction)selectPhotoButtonClicked:(UIButton *)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
 #pragma mark - Photo Picker Delegates
@@ -75,6 +83,26 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - Helper Methods
+
+- (BOOL)checkAllFieldsAreFilled {
+    BOOL isEverythingFilled = TRUE;
+    
+    if(!(self.beaconName.text && self.beaconUUID.text && self.beaconMajorValue.text && self.beaconMinorValue.text && self.beaconURL && self.beaconImage)) {
+        isEverythingFilled = FALSE;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Please fill all the details"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+    }
+    
+    return isEverythingFilled;
 }
 
 @end

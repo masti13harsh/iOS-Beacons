@@ -15,6 +15,7 @@
 		3A0FC8C11AD2FC4E000BF3C2 /* Prabal_TableView_TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FC8C01AD2FC4E000BF3C2 /* Prabal_TableView_TestTests.m */; };
 		3A0FC8CC1AD2FCD0000BF3C2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FC8CB1AD2FCD0000BF3C2 /* TableViewController.m */; };
 		3A0FC8CF1AD2FE62000BF3C2 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FC8CE1AD2FE62000BF3C2 /* AddItemViewController.m */; };
+		3A624BF41AE170DB000F3BD9 /* Beacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A624BF31AE170DB000F3BD9 /* Beacon.m */; };
 		3A64404D1AD4418A006BBF20 /* SelectedCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64404C1AD4418A006BBF20 /* SelectedCellViewController.m */; };
 		F75B64E01ADDA2B600CA9F2E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75B64DF1ADDA2B600CA9F2E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,8 @@
 		3A0FC8CB1AD2FCD0000BF3C2 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
 		3A0FC8CD1AD2FE62000BF3C2 /* AddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemViewController.h; sourceTree = SOURCE_ROOT; };
 		3A0FC8CE1AD2FE62000BF3C2 /* AddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemViewController.m; sourceTree = SOURCE_ROOT; };
+		3A624BF21AE170DB000F3BD9 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
+		3A624BF31AE170DB000F3BD9 /* Beacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beacon.m; sourceTree = "<group>"; };
 		3A64404B1AD4418A006BBF20 /* SelectedCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedCellViewController.h; sourceTree = "<group>"; };
 		3A64404C1AD4418A006BBF20 /* SelectedCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedCellViewController.m; sourceTree = "<group>"; };
 		F75B64DF1ADDA2B600CA9F2E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -98,6 +101,8 @@
 				3A0FC8CE1AD2FE62000BF3C2 /* AddItemViewController.m */,
 				3A0FC8CA1AD2FCD0000BF3C2 /* TableViewController.h */,
 				3A0FC8CB1AD2FCD0000BF3C2 /* TableViewController.m */,
+				3A624BF21AE170DB000F3BD9 /* Beacon.h */,
+				3A624BF31AE170DB000F3BD9 /* Beacon.m */,
 				3A64404B1AD4418A006BBF20 /* SelectedCellViewController.h */,
 				3A64404C1AD4418A006BBF20 /* SelectedCellViewController.m */,
 				3A0FC8B11AD2FC4E000BF3C2 /* Images.xcassets */,
@@ -236,6 +241,7 @@
 				3A0FC8AA1AD2FC4E000BF3C2 /* AppDelegate.m in Sources */,
 				3A64404D1AD4418A006BBF20 /* SelectedCellViewController.m in Sources */,
 				3A0FC8CF1AD2FE62000BF3C2 /* AddItemViewController.m in Sources */,
+				3A624BF41AE170DB000F3BD9 /* Beacon.m in Sources */,
 				3A0FC8CC1AD2FCD0000BF3C2 /* TableViewController.m in Sources */,
 				3A0FC8A71AD2FC4E000BF3C2 /* main.m in Sources */,
 			);

@@ -24,5 +24,5 @@
 
 //Properties
 @property (strong, nonatomic) UIImage *beaconImage;
-
+@property (strong, nonatomic) NSMutableArray *beacons;
 @end

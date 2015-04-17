@@ -8,6 +8,8 @@
 
 #import "TableViewController.h"
 #import "SelectedCellViewController.h"
+#import "AddItemViewController.h"
+#import "Beacon.h"
 
 @interface TableViewController ()
 
@@ -23,7 +25,14 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.beacons = [[NSUserDefaults standardUserDefaults] objectForKey:@"beacons"];
+    
+    self.beacons = [[NSMutableArray alloc] init];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"%@", self.beacons);
+    [self.tableView reloadData];
 }
 
 - (NSMutableArray *)beacons {
@@ -36,18 +45,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    BOOL isNewCellAdded = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isCellAdded"] boolValue];
-    if(isNewCellAdded) {
-        NSDictionary *addedBeacon = [[NSUserDefaults standardUserDefaults] objectForKey:@"newCell"];
-        [self.beacons addObject:addedBeacon];
-        [[NSUserDefaults standardUserDefaults] setObject:self.beacons forKey:@"beacons"];
-        NSLog(@"beacons: %@", self.beacons);
-        
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isCellAdded"];
-    }
 }
 
 #pragma mark - Table view data source
@@ -67,8 +64,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    NSMutableDictionary *cellDetails = [self.beacons objectAtIndex:indexPath.row];
-    cell.textLabel.text = [cellDetails objectForKey:@"beaconName"];
+    NSMutableDictionary *beacon = [self.beacons objectAtIndex:indexPath.row];
+    cell.textLabel.text = [beacon objectForKey:BEACON_NAME];
+    cell.imageView.image = [beacon objectForKey:BEACON_IMAGE];
     
     return cell;
 }
@@ -116,8 +114,13 @@
 //     Pass the selected object to the new view controller.
     if([[segue destinationViewController] isKindOfClass:[SelectedCellViewController class]]){
         SelectedCellViewController *selectedCellViewController = [segue destinationViewController];
-        selectedCellViewController.selectedCellIndex = [self.tableView indexPathForSelectedRow].row;
+        selectedCellViewController.selectedBeacon = [self.beacons objectAtIndex:[self.tableView indexPathForSelectedRow].row];
         //NSLog(@"Selected cell index: %d", [self.tableView indexPathForSelectedRow].row);
+    }
+    
+    if([[segue destinationViewController] isKindOfClass:[AddItemViewController class]]) {
+        AddItemViewController *addItemViewController = [segue destinationViewController];
+        addItemViewController.beacons = self.beacons;
     }
 }
 

@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface TableViewController : UITableViewController
+
+//IBOutlets
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic) int numberOfBeacons;
-@property (nonatomic) int selectedCellIndex;
+//Properties
 @property (strong, nonatomic) NSMutableArray *beacons;
+
 @end

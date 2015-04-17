@@ -7,6 +7,7 @@
 //
 
 #import "SelectedCellViewController.h"
+#import "Beacon.h"
 
 @interface SelectedCellViewController () <CLLocationManagerDelegate>
 
@@ -16,14 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self drawCircleViewForProximity:@""];
     // Do any additional setup after loading the view.
-    NSMutableArray *beacons = [[NSUserDefaults standardUserDefaults] objectForKey:@"beacons"];
-    NSMutableDictionary *selectedBeacon = [beacons objectAtIndex:self.selectedCellIndex];
-    self.beaconName.text = [selectedBeacon objectForKey:@"beaconName"];
-    self.beaconUUID.text = [selectedBeacon objectForKey:@"beaconUUID"];
-    self.beaconMajor.text = [selectedBeacon objectForKey:@"beaconMajorValue"];
-    self.beaconMinor.text = [selectedBeacon objectForKey:@"beaconMinorValue"];
-    self.beaconURL.text = [selectedBeacon objectForKey:@"beaconURL"];
+    
+    self.beaconName.text = [self.selectedBeacon objectForKey:BEACON_NAME];
+    self.beaconUUID.text = [self.selectedBeacon objectForKey:BEACON_UUID];
+    self.beaconMajor.text = [self.selectedBeacon objectForKey:BEACON_MAJOR];
+    self.beaconMinor.text = [self.selectedBeacon objectForKey:BEACON_MINOR];
+    self.beaconURL.text = [self.selectedBeacon objectForKey:BEACON_URL];
     
 //    self.beaconName.text = @"b1";
 //    self.beaconUUID.text = @"8AEFB031-6C32-486F-825B-E26FA193487D";
@@ -67,6 +68,7 @@
         NSLog(@"%@", beacons);
         CLBeacon *beacon = beacons[0];
         self.beaconProximity.text = [self nameForProximity:beacon.proximity];
+        [self drawCircleViewForProximity:[self nameForProximity:beacon.proximity]];
     }
 }
 
@@ -93,6 +95,28 @@
             return @"error";
             break;
     }
+}
+
+- (void)drawCircleViewForProximity:(NSString *)proximity {
+    UIColor *circleColor;
+    
+    if([proximity  isEqual: @"Unknown"]) {
+        circleColor = [UIColor blackColor];
+    }
+    else if([proximity  isEqual: @"Far"]) {
+        circleColor = [UIColor redColor];
+    }
+    else if([proximity  isEqual: @"Immediate"]) {
+        circleColor = [UIColor greenColor];
+    }
+    else if([proximity  isEqual: @"Near"]) {
+        circleColor = [UIColor yellowColor];
+    }
+    else {
+        circleColor = [UIColor grayColor];
+    }
+    self.circleView.layer.cornerRadius = 50;
+    self.circleView.backgroundColor = circleColor;
 }
 
 @end
